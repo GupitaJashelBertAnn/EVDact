@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="parent">
+  <button class="child">Click Me 1</button>
+  <button class="child">Click Me 2</button>
+</div>
+
+<button id="add-btn">Add New Button</button>
+
+<script>
+// Event delegation: Attach a single event listener to the parent element
+const parent = document.getElementById('parent');
+const addBtn = document.getElementById('add-btn');
+
+// Event listener for the parent element
+parent.addEventListener('click', function(event) {
+  // Check if the clicked element is a button with class 'child'
+  if (event.target && event.target.classList.contains('child')) {
+    alert(`You clicked: ${event.target.innerText}`);
+  }
+});
+
+// Dynamically add a new button to the parent element
+addBtn.addEventListener('click', function() {
+  const newButton = document.createElement('button');
+  newButton.classList.add('child');
+  newButton.innerText = `New Button ${parent.children.length}`;
+  parent.appendChild(newButton);
+});
+
+</script>
+</body>
+</html>
